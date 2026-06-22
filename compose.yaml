@@ -4,46 +4,16 @@ services:
   web:
     depends_on:
       - api
-
     build: ./client-boilerplate
-
     ports:
-      - "5173:5173"
-
-    environment:
-      VITE_API_URL: http://localhost:8000
-
-    develop:
-      watch:
-        - path: ./client-boilerplate/package.json
-          action: rebuild
-
-        - path: ./client-boilerplate/package-lock.json
-          action: rebuild
-
-        - path: ./client-boilerplate
-          target: /app
-          action: sync
+      - "3000:80"
+    restart: always
 
   api:
     build: ./server-boilerplate
-
     ports:
       - "8000:8000"
-
     environment:
       PORT: 8000
       DB_URL: mongodb+srv://srushtikhatale45_db_user:Srushtikhatale@cluster0.x2wxbvt.mongodb.net/?appName=Cluster0
-
-    develop:
-      watch:
-        - path: ./server-boilerplate/package.json
-          action: rebuild
-
-        - path: ./server-boilerplate/package-lock.json
-          action: rebuild
-
-        - path: ./server-boilerplate
-          target: /app
-          action: sync
-
+    restart: always
