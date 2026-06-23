@@ -17,8 +17,7 @@ function App() {
     const getProductsFromAPI = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("http://localhost:8000/products");
-
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/products`);
         console.log("API RESPONSE:", response.data);
 
         // 🔥 FIX: handle different backend response formats safely
@@ -43,10 +42,7 @@ function App() {
   // ✅ DELETE PRODUCT
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(
-        `http://localhost:8000/products/${id}`
-      );
-
+      const res = await axios.delete(`${import.meta.env.VITE_API_URL}/products/${id}`);
       const deletedId = res.data._id || id;
 
       setProducts((prev) =>
@@ -60,10 +56,7 @@ function App() {
   // ✅ ADD PRODUCT
   const addProduct = async (product) => {
     try {
-      const res = await axios.post(
-        "http://localhost:8000/products",
-        product
-      );
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/products`, product);
 
       console.log("Product added:", res.data);
 
@@ -76,10 +69,7 @@ function App() {
   // ✅ UPDATE PRODUCT
   const handleUpdate = async (id, product) => {
     try {
-      const res = await axios.patch(
-        `http://localhost:8000/products/${id}`,
-        product
-      );
+    const res = await axios.patch(`${import.meta.env.VITE_API_URL}/products/${id}`, product);
 
       console.log("Product updated:", res.data);
 
