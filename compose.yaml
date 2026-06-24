@@ -4,17 +4,20 @@ services:
   web:
     depends_on:
       - api
-    build: ./client-boilerplate
+    build:
+      context: ./client-boilerplate
+      args:
+        VITE_API_URL: http://sahajafashion.com/api
     ports:
       - "3000:80"
     restart: always
-    environment:
-      VITE_API_URL: http://sahajafashion.com/api
+
   api:
     build: ./server-boilerplate
     ports:
       - "8000:8000"
     environment:
       PORT: 8000
-      DB_URL: mongodb+srv://srushtikhatale45_db_user:Srushtikhatale@cluster0.x2wxbvt.mongodb.net/
+      DB_URL: mongodb+srv://srushtikhatale45_db_user:Srushtikhatale@cluster0.x2wxbvt.mongodb.net/sahajafashion?appName=Cluster0
+      PUBLIC_DIR: public
     restart: always
