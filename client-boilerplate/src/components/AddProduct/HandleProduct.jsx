@@ -54,7 +54,7 @@ const HandleProduct = ({ productIdToUpdate, addProduct }) => {
   const fetchProductData = async (productId) => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/products/${productId}`
+       `${import.meta.env.VITE_API_URL}/products/${productId}`
       );
       setProduct(response.data);
     } catch (error) {

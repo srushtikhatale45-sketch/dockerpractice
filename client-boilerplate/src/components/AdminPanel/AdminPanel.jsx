@@ -22,7 +22,7 @@ function AdminPanel({ products, handleDelete, handleUpdate }) {
   const getProductsFromAPI = async (id) => {
     console.log("getProductDetails");
     try {
-      const response = await axios.get(`http://localhost:8000/products/${id}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/products/${id}`);
       console.log("getProductDetails ->", response.data);
       setProductDetails(response.data);
       setProduct(response.data);
